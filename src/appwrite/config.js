@@ -54,8 +54,10 @@ export class Service {
         conf.appwriteCollectionId,
         slug
       )
+      return true
     } catch (error) {
       console.log('Error deleting post', error)
+      return false
     }
   }
   async getPost(slug) {

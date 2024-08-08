@@ -14,7 +14,8 @@ const PostForm = ({post}) => {
         }
     })
     const navigate = useNavigate();
-    const userData = useSelector(state => state.auth.userData)
+    const userData = useSelector(state => state.auth.userData);
+    console.log(userData);
 
     const submit = async(data)=> {
         if(post){
@@ -35,9 +36,12 @@ const PostForm = ({post}) => {
             if(file){
                 const fileId = file.$id;
                 data.featuredImage = fileId;
+                console.log(userData);
+                console.log(userData.user);
+                console.log(userData.user.$id);
                 const dbPost = await service.createPost({
                     ...data,
-                    userId: userData.$id
+                    userId: userData.user.$id
                 })
                 if(dbPost){
                     navigate(`/post/${dbPost.$id}`)

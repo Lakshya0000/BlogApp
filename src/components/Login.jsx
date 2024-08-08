@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { login as authLogin } from '../store/authSlice'
 import { Button, Input, Logo } from './index';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import authService from '../appwrite/auth';
 import {useForm} from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
@@ -19,6 +19,12 @@ const Login = () => {
                 if(userData){
                     dispatch(authLogin(userData));
                 }
+                // console.log(userData);
+                // console.log(userData.user);
+                // console.log(userData.user.$id);
+                // console.log(userData.$id);
+                const user = useSelector(state => state.auth.userData);
+                console.log(user);
                 navigate("/");
             }
         }

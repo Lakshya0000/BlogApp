@@ -13,7 +13,7 @@ export default function Post() {
     const userData = useSelector((state) => state.auth.userData);
 
     
-    let isAuthor = post && userData ? post.userId === userData.$id : false;;
+    let isAuthor = post && userData ? post.userId === userData.user.$id : false;;
 
     useEffect(() => {
         if (slug) {
@@ -32,7 +32,6 @@ export default function Post() {
                 service.deleteFile(post.featuredImage).then(status => {
                     navigate("/");
                 });
-                
             }
         });
     };
